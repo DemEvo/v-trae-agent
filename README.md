@@ -39,6 +39,19 @@ uv sync --all-extras
 source .venv/bin/activate
 ```
 
+```bash
+# 1. Базовые инструменты сборки
+python -m pip install --upgrade pip setuptools wheel Cython
+
+# 2. Проблемный пакет собираем заранее без изоляции
+python -m pip install --no-build-isolation \
+    git+https://github.com/grantjenks/py-tree-sitter-languages.git
+
+python -m pip install "tree-sitter==0.21.3"
+# 3. Теперь ваш проект ставится без пересборки этой зависимости
+python -m pip install -e ".[all]"
+```
+
 ## ⚙️ Configuration
 
 ### YAML Configuration (Recommended)
